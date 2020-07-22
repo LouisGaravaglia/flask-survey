@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "4534gdghjk5d#$RGR^HDG"
 
-
+# ///////////////////////////// HOME
 
 @app.route('/')
 def home_page():
@@ -18,6 +18,7 @@ def home_page():
     return render_template("home.html", title=title, instructions=instructions)
 
 
+# ///////////////////////////// FIRST QUESTION
 
 @app.route('/questions/0')
 def question_0():
@@ -25,10 +26,9 @@ def question_0():
     main_question = satisfaction_survey.questions[0]
     question = main_question.question
     choices = main_question.choices
-    allow_text = main_question.allow_text
     
 
-    return render_template("question_0.html", question=question, choices=choices, allow_text=allow_text)
+    return render_template("question_0.html", question=question, choices=choices)
 
 
 @app.route('/questions/0/answer')
@@ -39,20 +39,21 @@ def answer_0():
     
     
 
-    return redirect("/")    
-    # return render_template("answer_0.html", option=option)
+    # return redirect("/")    
+    return render_template("question_1.html", option=option)
+
+# ///////////////////////////// SECOND QUESTION
 
 @app.route('/questions/1')
 def question_1():
     """shows second question"""
-    main_question = satisfaction_survey.questions[1]
+    question_array = satisfaction_survey.questions
+    main_question = question_array[1]
     question = main_question.question
     choices = main_question.choices
-    allow_text = main_question.allow_text
     
 
-    return render_template("question_1.html", question=question, choices=choices, allow_text=allow_text)
-
+    return render_template("question_1.html", question=question, choices=choices)
     
 @app.route('/questions/1/answer')
 def answer_1():
@@ -66,7 +67,7 @@ def answer_1():
     
 
     # return redirect("/")    
-    return render_template("answer_1.html")
+    return render_template("answer_1.html", option=option)
 
 
 
