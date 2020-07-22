@@ -25,20 +25,48 @@ def question_0():
     main_question = satisfaction_survey.questions[0]
     question = main_question.question
     choices = main_question.choices
+    allow_text = main_question.allow_text
     
 
-    return render_template("question_0.html", question=question, choices=choices)
+    return render_template("question_0.html", question=question, choices=choices, allow_text=allow_text)
 
 
 @app.route('/questions/0/answer')
 def answer_0():
     """keeps track of answer to first question"""
     option = request.args.get("options")
-    session[Question_0] = option
+    session["responses"] = option
     
     
 
     return redirect("/")    
     # return render_template("answer_0.html", option=option)
+
+@app.route('/questions/1')
+def question_1():
+    """shows second question"""
+    main_question = satisfaction_survey.questions[1]
+    question = main_question.question
+    choices = main_question.choices
+    allow_text = main_question.allow_text
+    
+
+    return render_template("question_1.html", question=question, choices=choices, allow_text=allow_text)
+
+    
+@app.route('/questions/1/answer')
+def answer_1():
+    """keeps track of answer to second question"""
+    option = request.args.get("options")
+    response_list = session['responses']
+    response_list.append(option)
+    session['responses'] = response_list
+    
+    
+    
+
+    # return redirect("/")    
+    return render_template("answer_1.html")
+
 
 

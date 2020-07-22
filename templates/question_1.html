@@ -1,16 +1,9 @@
-
-
-{% extends "base.html" %}
-
-{% block title %} HOME {% endblock %}
-
-
 {% block content %}
 
 
-<h1>Question #1</h1>
+<h1>Question #2</h1>
 <br>
-<form action="/questions/0/answer">
+<form action="/questions/1/answer">
 <p>{{question}}</p> 
 {% for choice in choices %}
 <div>
@@ -21,7 +14,8 @@
 
 {% endfor %}
 
-{% if {{allow_text}} %}
+
+{% if allow_text == True %}
 <div>
   <input type="text" id="allow_text" name="options">
   <label for="allow_text">Describe</label>
