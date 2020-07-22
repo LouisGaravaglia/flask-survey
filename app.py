@@ -40,7 +40,7 @@ def show_question(qid):
         return redirect("/thank_you")
     
     if (len(responses) != qid):
-        flash(f"Invalid question id: {qid}.")
+        flash(f"Invalid question id: {qid}.", "error")
         return redirect(f"/questions/{len(responses)}")
     
     question = satisfaction_survey.questions[qid]
