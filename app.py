@@ -1,11 +1,14 @@
 from flask import Flask, request, render_template, session, make_response, redirect
 from surveys import satisfaction_survey
 from random import choice, randint
+from flask_debugtoolbar import DebugToolbarExtension
 
 
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "4534gdghjk5d#$RGR^HDG"
+
+debug = DebugToolbarExtension(app)
 
 # ///////////////////////////// HOME
 
